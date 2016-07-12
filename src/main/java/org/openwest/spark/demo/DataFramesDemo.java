@@ -7,7 +7,7 @@ import org.apache.spark.sql.SparkSession;
 
 public class DataFramesDemo {
     public static void main( String[ ] args ) {
-        System.setProperty( "hadoop.home.dir", "C:/Users/hrputhal/Downloads/hadoop-winutils-2.6.0" );
+        System.setProperty( "hadoop.home.dir", "C:/Users/hrputhal/Dev/hadoop-winutils-2.6.0" );
         SparkSession sparkSession = SparkSession.builder( ).appName( "DataFrames Demo" ).master( "local[*]" )
                 .getOrCreate( );
         Dataset< Row > dataframe = sparkSession.read( ).option( "header", "true" )
