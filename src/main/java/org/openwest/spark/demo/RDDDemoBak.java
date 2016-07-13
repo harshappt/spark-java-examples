@@ -8,6 +8,7 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.StorageLevels;
 
 import scala.Tuple2;
 
@@ -26,20 +27,17 @@ public class RDDDemoBak {
          */
         rddFromCollection( sc );
         /*
-         * Spark can create distributed datasets from any storage source supported by Hadoop, including your local file
+         * Spark can create distributed datasets from any storage source supported by Hadoop, including local file
          * system, HDFS, Cassandra, HBase, Amazon S3, etc. Spark supports text files, SequenceFiles, and any other
          * Hadoop InputFormat.
          */
         JavaRDD< String > inputRDD = sc.textFile( "src/main/resources/us-500.csv", 3 );
-        // Passing functions to spark
-        // map
         JavaRDD< String[ ] > splitRDD = inputRDD.map( row -> row.split( "," ) );
-        // map to pair
+        splitRDD.persist( StorageLevels.MEMORY_ONLY );
         JavaPairRDD< String, Integer > stateToOneRDD = splitRDD
                 .mapToPair( split -> new Tuple2< String, Integer >( split[ 6 ], 1 ) );
-        // reduce by Key transformation
         JavaPairRDD< String, Integer > countsRDD = stateToOneRDD.reduceByKey( ( Integer a, Integer b ) -> a + b );
-        // collect as map
+        // collect as map. Using collect may be dangerous
         Map< String, Integer > collectAsMap = countsRDD.collectAsMap( );
         collectAsMap.forEach( ( String state, Integer count ) -> System.out.println( state + "----" + count ) );
     }

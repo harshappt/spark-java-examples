@@ -5,6 +5,10 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
+/**
+ * It is a strongly-typed, immutable collection of objects that are mapped to a relational schema. It is conceptually
+ * equivalent to a table in a relational database or a R/Python Dataframe.
+ */
 public class DataFramesDemo {
     public static void main( String[ ] args ) {
         System.setProperty( "hadoop.home.dir", "C:/Users/hrputhal/Dev/hadoop-winutils-2.6.0" );
