@@ -12,18 +12,10 @@ public class Person implements Serializable {
     private String county;
     private String state;
     private Long zip;
-
-    public Person( String firstName, String lastName, String companyName, String address, String city, String county,
-            String state, Long zip ) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.companyName = companyName;
-        this.address = address;
-        this.city = city;
-        this.county = county;
-        this.state = state;
-        this.zip = zip;
-    }
+    private String phone1;
+    private String phone2;
+    private String email;
+    private String web;
 
     public String getFirstName( ) {
         return firstName;
@@ -87,5 +79,37 @@ public class Person implements Serializable {
 
     public void setZip( Long zip ) {
         this.zip = zip;
+    }
+
+    public String getPhone1( ) {
+        return phone1;
+    }
+
+    public void setPhone1( String phone1 ) {
+        this.phone1 = phone1;
+    }
+
+    public String getPhone2( ) {
+        return phone2;
+    }
+
+    public void setPhone2( String phone2 ) {
+        this.phone2 = phone2;
+    }
+
+    public String getEmail( ) {
+        return email;
+    }
+
+    public void setEmail( String email ) {
+        this.email = email;
+    }
+
+    public String getWeb( ) {
+        return web;
+    }
+
+    public void setWeb( String web ) {
+        this.web = web;
     }
 }
